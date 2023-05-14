@@ -1,0 +1,7 @@
+*{
+    margin: 0;
+}
+
+.nav{
+    background-image: linear-gradient(to right, rgb(97, 20, 220) , rgb(211, 113, 195) );
+}
