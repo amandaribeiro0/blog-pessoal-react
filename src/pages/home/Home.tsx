@@ -1,24 +1,30 @@
 import React from 'react';
-import './Home.css'
-import { Button, Grid, Paper } from '@material-ui/core';
-import { Box } from '@mui/material';
+import './Home.css';
+import {Typography, Grid, Button} from '@material-ui/core';
+import {Box} from '@mui/material';
 
 export default function Home() {
     return (
         <>
-            <Paper>
-                <Box p={2}>
+         <Grid container direction="row" justifyContent="center" alignItems="center" style={{ backgroundColor: "#90E0EF" }}>
+                <Grid alignItems="center" item xs={6}>
+                    <Box paddingX={20} >
+                        <Typography variant="h3" gutterBottom color="textPrimary" component="h3" align="center" style={{ color: "white", fontWeight: "bold" }}>Bem vindo(a)!</Typography>
+                        <Typography variant="h5" gutterBottom color="textPrimary" component="h5" align="center" style={{ color: "white", fontWeight: "bold" }}>expresse aqui os seus pensamentos e opiniões!</Typography>
+                    </Box>
                     <Box display="flex" justifyContent="center">
-                        <h1>Title</h1>
+                        <Box marginRight={1}>
+                        </Box>
+                        <Button variant="outlined" style={{ border: " 2px solid black", backgroundColor: "#0077B6", color: "white" }}>Ver Postagens</Button>
                     </Box>
-                    <img  src="https://s2-gshow.glbimg.com/wUFjjPNIoBPYZ1kZ_d3KU30jOok=/0x0:1440x1791/984x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_e84042ef78cb4708aeebdf1c68c6cbd6/internal_photos/bs/2022/8/i/TfLdc1QgSYQGIwAiSwUA/fas-reclamam-do-sumico-de-justin-bieber-evanpaterakis.jpg" 
-                    alt='Justin Bieber' style={{width:"100%", height:"100%"}}/>
-                    <Box display="flex" justifyContent="center" p={2}>
-                        <Button variant='contained' color='primary'>Aceitar </Button>
-                        <Button  variant='contained' color='secondary'>Recusar</Button>
-                    </Box>
-                </Box>
-            </Paper>
+                </Grid>
+                <Grid item xs={6} >
+                    <img src="https://i.imgur.com/H88yIo2.png" alt="" width="500px" height="500px" />
+                </Grid>
+                <Grid xs={12} style={{ backgroundColor: "white" }}>
+                </Grid>
+            </Grid>
+          
         </>)
 
 };

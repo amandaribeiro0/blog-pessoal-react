@@ -3,5 +3,10 @@
 }
 
 .nav{
-    background-image: linear-gradient(to right, rgb(97, 20, 220) , rgb(211, 113, 195) );
+    background-image: linear-gradient(to right, #0077B6 , #90E0EF );
+    border-bottom: 3px black solid;
+   
 }
+
+
+ 

@@ -25,10 +25,35 @@ export default function Navbar() {
                         >
                             <MenuIcon />
                         </IconButton>
-                        <Typography variant="h4" component="div" sx={{ flexGrow: 1 }}>
-                           Blog Pessoal
-                        </Typography>
-                        <Button variant="outlined" color="inherit">Logout</Button>
+                        <Box style={{ cursor: "pointer" }} >
+                            <Typography variant="h5" color="inherit">
+                                Blog Pessoal
+                            </Typography>
+                        </Box>
+
+                        <Box p={3} display="flex" justifyContent="start">
+                            <Box mx={1} style={{ cursor: "pointer" }}>
+                                <Typography variant="h6" color="inherit">
+                                    Home
+                                </Typography>
+                            </Box>
+                            <Box mx={1} style={{ cursor: "pointer" }}>
+                                <Typography variant="h6" color="inherit">
+                                    Postagens
+                                </Typography>
+                            </Box>
+                            <Box mx={1} style={{ cursor: "pointer" }}>
+                                <Typography variant="h6" color="inherit">
+                                    Temas
+                                </Typography>
+                            </Box>
+                            <Box mx={1} style={{ cursor: "pointer" }}>
+                                <Typography variant="h6" color="inherit">
+                                    Cadastrar tema
+                                </Typography>
+                            </Box>
+                        </Box>
+                        <Button className='buttonLogout' variant="outlined" color="inherit">Logout</Button>
                     </Toolbar>
                 </AppBar>
             </Box>
