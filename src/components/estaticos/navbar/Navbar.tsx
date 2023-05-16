@@ -7,6 +7,7 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
+import { Link } from 'react-router-dom';
 
 
 
@@ -32,11 +33,13 @@ export default function Navbar() {
                         </Box>
 
                         <Box p={3} display="flex" justifyContent="start">
-                            <Box mx={1} style={{ cursor: "pointer" }}>
-                                <Typography variant="h6" color="inherit">
-                                    Home
-                                </Typography>
-                            </Box>
+                            <Link to='/home' className='link'>
+                                <Box mx={1} style={{ cursor: "pointer" }}>
+                                    <Typography variant="h6" color="inherit">
+                                        Home
+                                    </Typography>
+                                </Box>
+                            </Link>
                             <Box mx={1} style={{ cursor: "pointer" }}>
                                 <Typography variant="h6" color="inherit">
                                     Postagens
@@ -53,7 +56,9 @@ export default function Navbar() {
                                 </Typography>
                             </Box>
                         </Box>
-                        <Button className='buttonLogout' variant="outlined" color="inherit">Logout</Button>
+                        <Link className='login' to='/login' >
+                            <Button className='buttonLogout' variant="outlined" color="inherit">Logout</Button>
+                        </Link>
                     </Toolbar>
                 </AppBar>
             </Box>
