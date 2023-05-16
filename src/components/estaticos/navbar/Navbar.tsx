@@ -15,49 +15,38 @@ export default function Navbar() {
     return (
         <>
             <Box sx={{ flexGrow: 1 }}>
-                <AppBar className='nav' position="static" color='secondary'>
-                    <Toolbar >
+                <AppBar className='nav' position="static">
+                    <Toolbar>
                         <IconButton
                             size="large"
                             edge="start"
                             color="inherit"
                             aria-label="menu"
-                            sx={{ mr: 3 }}
+                            sx={{ mr: 2 }}
                         >
                             <MenuIcon />
                         </IconButton>
-                        <Box style={{ cursor: "pointer" }} >
-                            <Typography variant="h5" color="inherit">
-                                Blog Pessoal
+                        <Typography p={3} variant="h5" component="div" sx={{ flexGrow: 1 }}>
+                            Blog Pessoal
+                        </Typography>
+                        <Box display="flex">
+                            <Link to='/home' className='link'>
+                                <Typography p={2} variant="h6" component="div" sx={{ flexGrow: 1 }}>
+                                    Home
+                                </Typography>
+                            </Link>
+                            <Typography p={2} variant="h6" component="div" sx={{ flexGrow: 1 }}>
+                                Postagens
+                            </Typography>
+                            <Typography p={2} variant="h6" component="div" sx={{ flexGrow: 1 }}>
+                                Temas
+                            </Typography>
+                            <Typography p={2} variant="h6" component="div" sx={{ flexGrow: 1 }}>
+                                Cadastrar temas
                             </Typography>
                         </Box>
-
-                        <Box p={3} display="flex" justifyContent="start">
-                            <Link to='/home' className='link'>
-                                <Box mx={1} style={{ cursor: "pointer" }}>
-                                    <Typography variant="h6" color="inherit">
-                                        Home
-                                    </Typography>
-                                </Box>
-                            </Link>
-                            <Box mx={1} style={{ cursor: "pointer" }}>
-                                <Typography variant="h6" color="inherit">
-                                    Postagens
-                                </Typography>
-                            </Box>
-                            <Box mx={1} style={{ cursor: "pointer" }}>
-                                <Typography variant="h6" color="inherit">
-                                    Temas
-                                </Typography>
-                            </Box>
-                            <Box mx={1} style={{ cursor: "pointer" }}>
-                                <Typography variant="h6" color="inherit">
-                                    Cadastrar tema
-                                </Typography>
-                            </Box>
-                        </Box>
-                        <Link className='login' to='/login' >
-                            <Button className='buttonLogout' variant="outlined" color="inherit">Logout</Button>
+                        <Link to='/login' className='link'>
+                            <Button variant="outlined" disableElevation style={{color:"#4085aad0", fontWeight:"bolder"}}>Logout</Button>
                         </Link>
                     </Toolbar>
                 </AppBar>

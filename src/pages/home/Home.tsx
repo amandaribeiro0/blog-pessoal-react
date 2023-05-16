@@ -3,6 +3,8 @@ import './Home.css';
 import {Typography, Grid, Button} from '@material-ui/core';
 import {Box} from '@mui/material';
 
+import imagem from '../../assets/images/home-img.svg';
+
 export default function Home() {
     return (
         <>
@@ -19,7 +21,7 @@ export default function Home() {
                     </Box>
                 </Grid>
                 <Grid item xs={6} >
-                    <img src="https://i.imgur.com/H88yIo2.png" alt="" width="500px" height="500px" />
+                    <img src={imagem} alt="" width="500px" height="500px" />
                 </Grid>
                 <Grid xs={12} style={{ backgroundColor: "white" }}>
                 </Grid>
