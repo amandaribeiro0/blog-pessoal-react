@@ -4,11 +4,12 @@ import {Typography, Grid, Button} from '@material-ui/core';
 import {Box} from '@mui/material';
 
 import imagem from '../../assets/images/home-img.svg';
+import TabPostagem from '../../components/postagens/tabpostagem/TabPostagem';
 
 export default function Home() {
     return (
         <>
-         <Grid container direction="row" justifyContent="center" alignItems="center" style={{ backgroundColor: "#90E0EF" }}>
+         <Grid container direction="row" justifyContent="center" alignItems="center" className='bemVindo'>
                 <Grid alignItems="center" item xs={6}>
                     <Box paddingX={20} >
                         <Typography variant="h3" gutterBottom  component="h3" align="center" style={{ color: "#03045E", fontWeight: "bold" }}>Bem vindo(a)!</Typography>
@@ -23,7 +24,9 @@ export default function Home() {
                 <Grid item xs={6} >
                     <img src={imagem} alt="" width="500px" height="500px" />
                 </Grid>
-                
+                <Grid xs={12} className='postagens'>
+                    <TabPostagem/>
+                </Grid>
             </Grid>
           
         </>)
