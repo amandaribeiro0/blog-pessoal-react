@@ -5,18 +5,34 @@ import { Box } from '@mui/material';
 
 import imagem from '../../assets/images/home-img.svg';
 import TabPostagem from '../../components/postagens/tabpostagem/TabPostagem';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import useLocalStorage from 'react-use-localstorage';
 import ModalPostagem from '../../components/postagens/modalPostagem/ModalPostagem';
+import { useSelector } from 'react-redux';
+import { UserState } from '../../store/token/Reducer';
+import { toast } from 'react-toastify';
 
 export default function Home() {
 
     let navigate = useNavigate();
-    const [token, setToken] = useLocalStorage('token');
+    // const [token, setToken] = useLocalStorage('token');
 
+    const token = useSelector<UserState, UserState["tokens"]>(
+        (state) => state.tokens
+    )
     useEffect(() => {
         if (token == "") {
-            alert("Você precisa estar logado")
+            // alert("Você precisa estar logado")
+            toast.error('Você precisa estar logado',{
+                position:"top-right",
+                autoClose:2000,
+                hideProgressBar:false,
+                closeOnClick:true,
+                pauseOnHover:true,
+                draggable:false,
+                theme:"colored",
+                progress:undefined
+            })
             navigate("/login")
 
         }
@@ -34,7 +50,9 @@ export default function Home() {
                         <Box marginRight={1}>
                             <ModalPostagem />
                         </Box>
-                        <Button variant="outlined" className='buttonPost' style={{ border: " 2px solid black", backgroundColor: "#0077B6", color: "white" }}>Ver Postagens</Button>
+                        <Link to='/postagens'>
+                            <Button variant="outlined" className='buttonPost' style={{ border: " 2px solid black", backgroundColor: "#0077B6", color: "white" }}>Ver Postagens</Button>
+                        </Link>
                     </Box>
                 </Grid>
                 <Grid item xs={6} >

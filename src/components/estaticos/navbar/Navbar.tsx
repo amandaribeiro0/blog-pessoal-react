@@ -9,21 +9,41 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import { Link, useNavigate } from 'react-router-dom';
 import useLocalStorage from 'react-use-localstorage';
+import { useDispatch, useSelector } from 'react-redux';
+import { UserState } from '../../../store/token/Reducer';
+import { addToken } from '../../../store/token/Action';
 
-
+import {toast} from 'react-toastify';
 
 export default function Navbar() {
-    const [token, setToken] = useLocalStorage('token');
+    // const [token, setToken] = useLocalStorage('token');
+    const dispatch = useDispatch();
+    const token = useSelector<UserState, UserState["tokens"]>(
+        (state) => state.tokens
+    )
     let navigate = useNavigate();
-    
-    function goLogout(){
-        setToken('')
-        alert("Usuário deslogado")
-       navigate('/login')
+
+    function goLogout() {
+        dispatch(addToken(''))
+        // alert("Usuário deslogado")
+        toast.info('Usuario deslogado',{
+            position:"top-right",
+            autoClose:2000,
+            hideProgressBar:false,
+            closeOnClick:true,
+            pauseOnHover:true,
+            draggable:false,
+            theme:"colored",
+            progress:undefined
+        })
+        navigate('/login')
     }
 
-    return (
-        <>
+    var navbarComponent;
+    if (token !== '') {
+        navbarComponent =
+
+
             <Box sx={{ flexGrow: 1 }}>
                 <AppBar className='nav' position="static">
                     <Toolbar>
@@ -45,29 +65,32 @@ export default function Navbar() {
                                     Home
                                 </Typography>
                             </Link>
-                            <Link to='/postagens'>
-                            <Typography p={2} variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                                Postagens
-                            </Typography>
+                            <Link to='/postagens' className='link'>
+                                <Typography p={2} variant="h6" component="div" sx={{ flexGrow: 1 }}>
+                                    Postagens
+                                </Typography>
                             </Link>
-                            <Link to='/temas'>
-                            <Typography p={2} variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                                Temas
-                            </Typography>
+                            <Link to='/temas' className='link'>
+                                <Typography p={2} variant="h6" component="div" sx={{ flexGrow: 1 }}>
+                                    Temas
+                                </Typography>
                             </Link>
-                            <Link to="/formularioTema">
-                            <Typography p={2} variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                                Cadastrar temas
-                            </Typography>
+                            <Link to="/formularioTema" className='link'>
+                                <Typography p={2} variant="h6" component="div" sx={{ flexGrow: 1 }}>
+                                    Cadastrar temas
+                                </Typography>
                             </Link>
                         </Box>
-                        
-                            <Button onClick={goLogout} variant="outlined" disableElevation style={{color:"#4085aad0", fontWeight:"bolder"}}>Logout</Button>
-                        
+
+                        <Button onClick={goLogout} variant="outlined" disableElevation style={{ color: "#4085aad0", fontWeight: "bolder" }}>Logout</Button>
+
                     </Toolbar>
                 </AppBar>
             </Box>
-
+    }
+    return (
+        <>
+            {navbarComponent}
         </>
     )
 };

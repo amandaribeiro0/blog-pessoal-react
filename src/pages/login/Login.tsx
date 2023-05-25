@@ -5,11 +5,17 @@ import { Link, useNavigate } from 'react-router-dom';
 import UserLogin from '../../models/UserLogin';
 import useLocalStorage from 'react-use-localstorage';
 import { login } from '../../services/Service';
+import { useDispatch } from 'react-redux';
+import { addToken } from '../../store/token/Action';
+import { toast } from 'react-toastify';
 
 
 export default function Login() {
     let history = useNavigate();
-    const [token, setToken] = useLocalStorage('token');
+        //  const [token, setToken] = useLocalStorage('token');
+
+    const dispatch = useDispatch();
+    const [token, setToken] = useState("");
     const [userLogin, setUserLogin] = useState<UserLogin>(
         {
             id:0,
@@ -26,17 +32,40 @@ export default function Login() {
      })
     }
     useEffect(()=>{
-        if(token != ''){
+        if(token !== ''){
+            console.log("Token: ", token)
+            dispatch(addToken(token))
             history('/home')
         }
     }, [token])
+
     async function onSubmit(e: ChangeEvent<HTMLFormElement>){
         e.preventDefault();
         try{
           await login(`/usuarios/logar`, userLogin, setToken)
-            alert("Usuario logado com sucesso!");
+           // alert("Usuario logado com sucesso!");
+           toast.success('Usuario logado com sucesso',{
+            position:"top-right",
+            autoClose:2000,
+            hideProgressBar:false,
+            closeOnClick:true,
+            pauseOnHover:true,
+            draggable:false,
+            theme:"colored",
+            progress:undefined
+        })
         }catch(error){
-            alert("Usuario não encontrado")
+            // alert("Usuario não encontrado")
+            toast.error('Usuario não encontrado',{
+                position:"top-right",
+                autoClose:2000,
+                hideProgressBar:false,
+                closeOnClick:true,
+                pauseOnHover:true,
+                draggable:false,
+                theme:"colored",
+                progress:undefined
+            })
         }
       // console.log("userLogin:" + Object.values(userLogin))
     }
