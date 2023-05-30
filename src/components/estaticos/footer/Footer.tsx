@@ -20,7 +20,7 @@ export default function Footer() {
 
             <Grid container direction="row" justifyContent="center" alignItems="center">
                 <Grid alignItems="center" item xs={12}>
-                    <Box style={{ backgroundColor: "#03045E", height: "80px" }}>
+                    <Box style={{ backgroundColor: "#7F5539", height: "80px" }}>
                         <Box display="flex" alignItems="center" justifyContent="center">
                             <Typography variant="h6" align="center" gutterBottom style={{ color: "white" }}>Siga-nos nas redes sociais </Typography>
                         </Box>
@@ -36,13 +36,13 @@ export default function Footer() {
                             </a>
                         </Box>
                     </Box>
-                    <Box style={{ backgroundColor: "#0077B6", height: "60px" }}>
+                    <Box style={{ backgroundColor: "#B08968", height: "60px" }}>
                         <Box paddingTop={1}>
                             <Typography variant="subtitle2" align="center" gutterBottom style={{ color: "white" }} >© 2023 Copyright:</Typography>
                         </Box>
                         <Box>
                             <a target="_blank" href="https://www.linkedin.com/in/amanda--costa/">
-                                <Typography variant="subtitle2" gutterBottom style={{ color: "white" }} align="center">Amanda Ribeiro da Costa</Typography>
+                                <Typography variant="subtitle2" gutterBottom style={{ color: "white", textDecoration:"none" }} align="center">Amanda Ribeiro da Costa</Typography>
                             </a>
                         </Box>
                     </Box>

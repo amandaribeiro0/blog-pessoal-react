@@ -3,10 +3,9 @@ import './Login.css'
 import { Box, Button, Grid, TextField, Typography } from '@mui/material';
 import { Link, useNavigate } from 'react-router-dom';
 import UserLogin from '../../models/UserLogin';
-import useLocalStorage from 'react-use-localstorage';
 import { login } from '../../services/Service';
 import { useDispatch } from 'react-redux';
-import { addToken } from '../../store/token/Action';
+import { addId, addToken } from '../../store/token/Action';
 import { toast } from 'react-toastify';
 
 
@@ -25,6 +24,13 @@ export default function Login() {
         }
     )
 
+    const  [respUserLogin, setRespUserLogin] = useState <UserLogin> ({
+        id:0,
+        usuario:'',
+        senha:'',
+        token:''
+    })
+
     function UpdatedModel(e: ChangeEvent<HTMLInputElement>){
         setUserLogin({
             ...userLogin,
@@ -39,10 +45,19 @@ export default function Login() {
         }
     }, [token])
 
+
+    useEffect (()=>{
+        if (respUserLogin.token !== ''){
+        dispatch(addToken(respUserLogin.token))
+        dispatch(addId(respUserLogin.id.toString()))
+        history('/home')
+        }
+    },[respUserLogin.token] )
+
     async function onSubmit(e: ChangeEvent<HTMLFormElement>){
         e.preventDefault();
         try{
-          await login(`/usuarios/logar`, userLogin, setToken)
+          await login(`/usuarios/logar`, userLogin, setRespUserLogin)
            // alert("Usuario logado com sucesso!");
            toast.success('Usuario logado com sucesso',{
             position:"top-right",
@@ -72,12 +87,12 @@ export default function Login() {
 
     return (
         <>
-            <Grid container direction='row' justifyContent='center' alignItems='center'>
+            <Grid className='login' container direction='row' justifyContent='center' alignItems='center'>
             <Grid xs={6} className='imagemLogin'> </Grid>
-                <Grid alignItems='center' xs={6}>
-                    <Box paddingX={20}>
+                <Grid  padding={12} className='formLogin' alignItems='center' justifyContent='center' xs={5}>
+                    <Box alignItems='center' justifyContent='center' paddingX={5}>
                         <form onSubmit={onSubmit}>
-                            <Typography variant='h3' gutterBottom component='h3' align='center'>
+                            <Typography  variant='h3' gutterBottom component='h3' align='center'>
                                 Entrar
                             </Typography>
                             <TextField  value={userLogin.usuario} onChange={(e: ChangeEvent<HTMLInputElement>) => UpdatedModel(e)} id='usuario' label='Usuario' variant='outlined' name='usuario' margin='normal' fullWidth />
@@ -87,7 +102,7 @@ export default function Login() {
                             </Box>
                         </form>
 
-                        <Box display='flex' justifyContent='center' marginTop={2}>
+                        <Box  justifyContent='center' marginTop={2}>
                             <Box marginRight={1}>
                                 <Typography variant='subtitle1' gutterBottom align='center'>Não tem uma conta?</Typography>
                             </Box>

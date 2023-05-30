@@ -16,8 +16,13 @@ import { Provider } from 'react-redux';
 import store from './store/Store';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'
+import FloatingButton from './components/floatingButton/FloatingButton';
+import Perfil from './pages/perfil/Perfil';
 
 function App() {
+  const handleClick = () => {
+    alert('Botão flutuante clicado!');
+  };
   return (
     <>
     <Provider store={store}>
@@ -49,9 +54,12 @@ function App() {
             <Route path="/deletarPostagem/:id" element={<DeletarPostagem />} />
 
             <Route path="/deletarTema/:id" element={<DeletarTema />} />
+
+            <Route path='/usuario' element={<Perfil/>} />
           </Routes>
 
         </div>
+        <FloatingButton onClick={handleClick} />
         <Footer />
       </BrowserRouter>
       </Provider>

@@ -3,7 +3,7 @@ import './Home.css';
 import { Typography, Grid, Button } from '@material-ui/core';
 import { Box } from '@mui/material';
 
-import imagem from '../../assets/images/home-img.svg';
+import imagem from '../../assets/images/home.svg';
 import TabPostagem from '../../components/postagens/tabpostagem/TabPostagem';
 import { Link, useNavigate } from 'react-router-dom';
 import useLocalStorage from 'react-use-localstorage';
@@ -43,15 +43,15 @@ export default function Home() {
             <Grid container direction="row" justifyContent="center" alignItems="center" className='bemVindo'>
                 <Grid alignItems="center" item xs={6}>
                     <Box paddingX={20} >
-                        <Typography variant="h3" gutterBottom component="h3" align="center" style={{ color: "#03045E", fontWeight: "bold" }}>Bem vindo(a)!</Typography>
-                        <Typography variant="h5" gutterBottom component="h5" align="center" style={{ color: "#03045E", fontWeight: "bold" }}>expresse aqui os seus pensamentos e opiniões!</Typography>
+                        <Typography variant="h3" gutterBottom component="h3" className='textoHome' align="center">Bem vindo(a)!</Typography>
+                        <Typography variant="h5" gutterBottom component="h5" className='textoHome' align="center" >poste aqui suas dicas, pensamentos e opiniôes!</Typography>
                     </Box>
                     <Box display="flex" justifyContent="center">
-                        <Box marginRight={1}>
-                            <ModalPostagem />
+                        <Box  marginRight={1}>
+                            < ModalPostagem />
                         </Box>
                         <Link to='/postagens'>
-                            <Button variant="outlined" className='buttonPost' style={{ border: " 2px solid black", backgroundColor: "#0077B6", color: "white" }}>Ver Postagens</Button>
+                            <Button  className='buttonPost'>Ver Postagens</Button>
                         </Link>
                     </Box>
                 </Grid>

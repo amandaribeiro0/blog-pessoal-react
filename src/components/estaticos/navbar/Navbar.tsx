@@ -1,22 +1,15 @@
 import React from 'react';
-import './Navbar.css';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
-import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
+import { Navbar, Nav, NavDropdown, Container } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
-import useLocalStorage from 'react-use-localstorage';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './Navbar.css'
+import { Typography } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
-import { UserState } from '../../../store/token/Reducer';
+import { toast } from 'react-toastify';
 import { addToken } from '../../../store/token/Action';
+import { UserState } from '../../../store/token/Reducer';
 
-import {toast} from 'react-toastify';
-
-export default function Navbar() {
-    // const [token, setToken] = useLocalStorage('token');
+const AppNavbar: React.FC = () => {
     const dispatch = useDispatch();
     const token = useSelector<UserState, UserState["tokens"]>(
         (state) => state.tokens
@@ -26,71 +19,57 @@ export default function Navbar() {
     function goLogout() {
         dispatch(addToken(''))
         // alert("Usuário deslogado")
-        toast.info('Usuario deslogado',{
-            position:"top-right",
-            autoClose:2000,
-            hideProgressBar:false,
-            closeOnClick:true,
-            pauseOnHover:true,
-            draggable:false,
-            theme:"colored",
-            progress:undefined
+        toast.info('Usuario deslogado', {
+            position: "top-right",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: false,
+            theme: "colored",
+            progress: undefined
         })
         navigate('/login')
     }
-
     var navbarComponent;
     if (token !== '') {
         navbarComponent =
 
+            <Navbar collapseOnSelect expand="lg" className='nav' variant="dark">
+                
+                <Link to="/home" className="navbar-brand">
+                    <img src={'https://i.imgur.com/8k5v0QI.png'} alt="Logo" width="120" height="45" /> {/* Imagem da logo */}
 
-            <Box sx={{ flexGrow: 1 }}>
-                <AppBar className='nav' position="static">
-                    <Toolbar>
-                        <IconButton
-                            size="large"
-                            edge="start"
-                            color="inherit"
-                            aria-label="menu"
-                            sx={{ mr: 2 }}
-                        >
-                            <MenuIcon />
-                        </IconButton>
-                        <Typography p={3} variant="h5" component="div" sx={{ flexGrow: 1 }}>
-                            Blog Pessoal
-                        </Typography>
-                        <Box display="flex">
-                            <Link to='/home' className='link'>
-                                <Typography p={2} variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                                    Home
-                                </Typography>
-                            </Link>
-                            <Link to='/postagens' className='link'>
-                                <Typography p={2} variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                                    Postagens
-                                </Typography>
-                            </Link>
-                            <Link to='/temas' className='link'>
-                                <Typography p={2} variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                                    Temas
-                                </Typography>
-                            </Link>
-                            <Link to="/formularioTema" className='link'>
-                                <Typography p={2} variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                                    Cadastrar temas
-                                </Typography>
-                            </Link>
-                        </Box>
+                </Link>
+                <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+                <Navbar.Collapse id="responsive-navbar-nav">
+                    <Nav className="mr-auto justify-content-start"> {/* Adicionando a classe justify-content-start */}
+                        <NavDropdown title="Postagens" id="collasible-nav-dropdown" style={{ color: 'white' }}>
+                            <NavDropdown.Item as={Link} to="/formulariopostagem">Cadastrar Postagem</NavDropdown.Item>
+                            <NavDropdown.Item as={Link} to="/postagens">Listar Postagens</NavDropdown.Item>
+                        </NavDropdown>
+                        <NavDropdown title="Temas" id="collasible-nav-dropdown" style={{ color: 'white' }}>
+                            <NavDropdown.Item as={Link} to="/formulariotema">Cadastrar Tema</NavDropdown.Item>
+                            <NavDropdown.Item as={Link} to="/temas">Listar Temas</NavDropdown.Item>
+                        </NavDropdown>
 
-                        <Button onClick={goLogout} variant="outlined" disableElevation style={{ color: "#4085aad0", fontWeight: "bolder" }}>Logout</Button>
 
-                    </Toolbar>
-                </AppBar>
-            </Box>
+                        <NavDropdown title="Social" id="collasible-nav-dropdown" style={{ color: 'white' }}>
+                            <NavDropdown.Item as={Link} to="/usuario">Perfil</NavDropdown.Item>
+
+                            <NavDropdown.Divider />
+                            <NavDropdown.Item onClick={goLogout} >Logout</NavDropdown.Item>
+                        </NavDropdown>
+                        
+                    </Nav>
+                </Navbar.Collapse>
+            </Navbar>
     }
     return (
         <>
             {navbarComponent}
         </>
-    )
+    );
 };
+
+export default AppNavbar;

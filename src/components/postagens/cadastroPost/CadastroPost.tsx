@@ -9,6 +9,7 @@ import { busca, buscaId, post, put } from '../../../services/Service';
 import { useSelector } from 'react-redux';
 import { UserState } from '../../../store/token/Reducer';
 import { toast } from 'react-toastify';
+import User from '../../../models/User';
 
 function CadastroPost() {
     let navigate = useNavigate();
@@ -18,6 +19,12 @@ function CadastroPost() {
     const token = useSelector<UserState, UserState["tokens"]>(
         (state) => state.tokens
     )
+
+    const userId = useSelector<UserState, UserState["id"]>(
+        (state) => state.id
+    )
+
+
     useEffect(() => {
         if (token == "") {
             //alert("Você precisa estar logado")
@@ -45,13 +52,23 @@ function CadastroPost() {
         id: 0,
         titulo: '',
         texto: '',
-        tema: null
+        tema: null,
+        usuario:null,
+    })
+
+    const [user, setUser] = useState<User>({
+        id: + userId,
+        nome: '',
+        usuario: '',
+        senha: '',
+        foto:''
     })
 
     useEffect(() => { 
         setPostagem({
             ...postagem,
-            tema: tema
+            tema: tema,
+            usuario: user
         })
     }, [tema])
 
@@ -135,9 +152,9 @@ function CadastroPost() {
     }
 
     return (
-        <Container maxWidth="sm" className="topo">
+        <Container maxWidth="sm" className="cadastroPost">
             <form onSubmit={onSubmit}>
-                <Typography variant="h3" color="textSecondary" component="h1" align="center" >Formulário de cadastro postagem</Typography>
+                <Typography variant="h3" style={{color:"black", padding:"30px"}} component="h1" align="center" >Cadastro postagem</Typography>
                 <TextField value={postagem.titulo} onChange={(e: ChangeEvent<HTMLInputElement>) => updatedPostagem(e)} id="titulo" label="titulo" variant="outlined" name="titulo" margin="normal" fullWidth />
                 <TextField value={postagem.texto} onChange={(e: ChangeEvent<HTMLInputElement>) => updatedPostagem(e)} id="texto" label="texto" name="texto" variant="outlined" margin="normal" fullWidth />
 
@@ -158,9 +175,9 @@ function CadastroPost() {
                         }
                     </Select>
                     <FormHelperText>Escolha um tema para a postagem</FormHelperText>
-                    <Button type="submit" variant="contained" color="primary">
-                        Finalizar
-                    </Button>
+                    
+                <Button type='submit' variant="contained" disableElevation style={{ color: "#7F5539", fontWeight: "bolder", background:"white" }}>FINALIZAR</Button>
+              
                 </FormControl>
             </form>
         </Container>

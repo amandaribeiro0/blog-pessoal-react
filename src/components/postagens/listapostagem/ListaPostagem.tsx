@@ -15,24 +15,24 @@ function ListaPostagem() {
     const [posts, setPosts] = useState<Postagem[]>([])
     // const [token, setToken] = useLocalStorage('token');
 
-    const token = useSelector <UserState, UserState["tokens"]>(
+    const token = useSelector<UserState, UserState["tokens"]>(
         (state) => state.tokens
     )
     let navigate = useNavigate();
 
     useEffect(() => {
         if (token == "") {
-           // alert("Você precisa estar logado")
-           toast.error('Você precisa estar logado',{
-            position:"top-right",
-            autoClose:2000,
-            hideProgressBar:false,
-            closeOnClick:true,
-            pauseOnHover:true,
-            draggable:false,
-            theme:"colored",
-            progress:undefined
-        })
+            // alert("Você precisa estar logado")
+            toast.error('Você precisa estar logado', {
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: false,
+                theme: "colored",
+                progress: undefined
+            })
             navigate("/login")
 
         }
@@ -62,12 +62,19 @@ function ListaPostagem() {
                                 <Typography color="textSecondary" gutterBottom>
                                     Postagens
                                 </Typography>
+                                <Typography variant="body2" component="p">
+                                    {post.usuario?.nome}
+                                </Typography>
+                                <Typography variant="body2" component="p">
+                                    {post.usuario?.usuario}
+                                </Typography>
                                 <Typography variant="h5" component="h2">
                                     {post.titulo}
                                 </Typography>
                                 <Typography variant="body2" component="p">
                                     {post.texto}
                                 </Typography>
+                               
                                 <Typography variant="body2" component="p">
                                     {post.tema?.descricao}
                                 </Typography>
@@ -82,7 +89,7 @@ function ListaPostagem() {
                                             </Button>
                                         </Box>
                                     </Link>
-                                    <Link  to={`/deletarPostagem/${post.id}`} className="text-decorator-none">
+                                    <Link to={`/deletarPostagem/${post.id}`} className="text-decorator-none">
                                         <Box mx={1}>
                                             <Button variant="contained" size='small' color="secondary">
                                                 DELETAR

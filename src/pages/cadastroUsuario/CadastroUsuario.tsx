@@ -15,7 +15,8 @@ export default function CadastroUsuario() {
             id: 0,
             nome: '',
             usuario: '',
-            senha: ''
+            senha: '',
+            foto:''
         })
 
     const [userResult, setUserResult] = useState<User>(
@@ -23,7 +24,8 @@ export default function CadastroUsuario() {
             id: 0,
             nome: '',
             usuario: '',
-            senha: ''
+            senha: '',
+            foto:''
         })
 
     useEffect(() => {
@@ -77,15 +79,16 @@ export default function CadastroUsuario() {
     }
     return (
         <>
-            <Grid container direction='row' justifyContent='center' alignItems='center'>
-                <Grid alignItems='center' xs={6}>
-                    <Box paddingX={10}>
+            <Grid  className='cadastro' container direction='row' justifyContent='center' alignItems='center'>
+                <Grid className='formCadastro' alignItems='center' xs={5}>
+                    <Box paddingX={5}>
                         <form onSubmit={onSubmit}>
-                            <Typography variant='h3' gutterBottom component='h3' align='center'>
+                            <Typography  variant='h3' gutterBottom component='h3' align='center'>
                                 Cadastre-se
                             </Typography>
                             <TextField value={user.nome}  onChange={(e: ChangeEvent<HTMLInputElement>) => updatedModel(e)} id='nome' label='Nome' variant='outlined' name='nome' margin='normal' fullWidth />
                             <TextField value={user.usuario}  onChange={(e: ChangeEvent<HTMLInputElement>) => updatedModel(e)} id='usuario' label='Usuario' variant='outlined' name='usuario' margin='normal' fullWidth />
+                            <TextField value={user.foto}  onChange={(e: ChangeEvent<HTMLInputElement>) => updatedModel(e)} id='foto' label='Imagem' variant='outlined' name='foto' margin='normal' fullWidth />
                             <TextField value={user.senha}  onChange={(e: ChangeEvent<HTMLInputElement>) => updatedModel(e)} id='senha' label='Senha' variant='outlined' name='senha' margin='normal' type='password' fullWidth />
                             <TextField value={confirmarSenha}  onChange={(e: ChangeEvent<HTMLInputElement>) => confirmarSenhaHandle(e)} id='confirmarSenha' label='Confirmar Senha' variant='outlined' name='confirmarSenha' margin='normal' type='password' fullWidth />
                             <Box marginTop={2} textAlign='center'>
