@@ -20,9 +20,7 @@ import FloatingButton from './components/floatingButton/FloatingButton';
 import Perfil from './pages/perfil/Perfil';
 
 function App() {
-  const handleClick = () => {
-    alert('Botão flutuante clicado!');
-  };
+ 
   return (
     <>
     <Provider store={store}>
@@ -59,7 +57,6 @@ function App() {
           </Routes>
 
         </div>
-        <FloatingButton onClick={handleClick} />
         <Footer />
       </BrowserRouter>
       </Provider>
