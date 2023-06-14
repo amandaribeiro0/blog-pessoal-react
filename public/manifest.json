@@ -27,5 +27,6 @@
     "background_color": "#F5539",
     "display": "standalone",
     "scope": "/",
-    "start_url": "https://blog-pessoal-react-rho.vercel.app/"
+    "start_url": "https://blog-pessoal-react-rho.vercel.app/",
+    "prefer_related_applications": false
 }
