@@ -1,19 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="https://i.imgur.com/H88yIo2.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Blog Pessoal</title>
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
-      <script>
-        if (typeof navigator.serviceWorker !== 'undefined'){
-          navigator.serviceWorker.register('pwabuilder-sw.js')
-        }
-      </script>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="https://i.imgur.com/H88yIo2.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog Pessoal</title>
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+  <link rel="manifest" href="/manifest.json" />
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#eab308" />
+  <meta name="msapplication-TileColor" content="#eab308" />
+  <meta name="theme-color" content="#eab308" />
+  <!-- End Favicon -->
+
+
+</head>
+
+<body>
+  <div id="root"></div>
+  <script type="module" src="/src/main.tsx"></script>
+</body>
+
 </html>
