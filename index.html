@@ -15,20 +15,23 @@
   <meta name="msapplication-TileColor" content="#eab308" />
   <meta name="theme-color" content="#eab308" />
   <!-- End Favicon -->
-
+  <script>
+    // Verifica se o navegador oferece suporte a PWA e se o pop-up de instalação ainda não foi mostrado
+    if ('serviceWorker' in navigator && window.matchMedia('(display-mode: standalone)').matches === false) {
+      window.addEventListener('load', function() {
+        navigator.serviceWorker.register('/service-worker.js').then(function(registration) {
+          console.log('Service Worker registrado com sucesso:', registration);
+        }).catch(function(error) {
+          console.log('Falha ao registrar o Service Worker:', error);
+        });
+      });
+    }
+  </script>
 
 </head>
 
 <body>
   <div id="root"></div>
-  
-  <button id="setup_button" onclick="installApp()">Installer</button>
-  <style>
-    #setup_button {
-      display: none;
-    }
-  </style>
-
   <script type="module" src="/src/main.tsx"></script>
 </body>
 
